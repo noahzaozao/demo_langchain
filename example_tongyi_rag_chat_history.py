@@ -8,7 +8,6 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.prompts import MessagesPlaceholder
-from langchain_chroma.vectorstores import Chroma
 from langchain_community.embeddings.dashscope import DashScopeEmbeddings
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.retrieval import create_retrieval_chain
@@ -32,7 +31,7 @@ don't know. Use three sentences maximum and keep the answer concise. \n
 
 prompt = ChatPromptTemplate.from_messages([
     ('system', system_prompt),
-    MessagesPlaceholder('chat_history'),
+    MessagesPlaceholder('chat_history'),  # chat history
     ('human', '{input}')
 ])
 
