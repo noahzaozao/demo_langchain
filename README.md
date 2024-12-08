@@ -36,7 +36,3 @@ In **LangChain**, embeddings are used to convert text into vectors that can be c
 5. **Return Response**: The final response is generated based on the search results and processed by the language model, providing the user with an answer that reflects the meaning of the query.
 
 This workflow allows applications to effectively respond to queries and make decisions based on the meaning of text, ensuring more accurate and contextually relevant results.
-
----
-
-This version optimizes the document by simplifying language while maintaining clarity. It also provides a clearer, step-by-step explanation of how the system works.
