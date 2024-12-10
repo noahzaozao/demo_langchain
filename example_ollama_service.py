@@ -2,6 +2,8 @@ import os  # Importing the os module for potential environment variable manageme
 import config  # Importing a config module, which could contain environment settings or credentials
 from langchain.prompts import PromptTemplate  # Importing PromptTemplate from langchain for creating structured prompts
 from langchain_ollama import ChatOllama  # Importing ChatOllama to use the Ollama model for text generation
+from fastapi import FastAPI
+from langserve import add_routes
 
 # The GitHub issue reference is likely included for context or debugging purposes
 # https://github.com/langchain-ai/langchain/issues/28607
@@ -29,23 +31,19 @@ prompt_template = PromptTemplate(
 # Use the pipe operator to chain the prompt template with the model
 chain = prompt_template | model
 
-# Define the language variable to specify the language for the response
-language = 'English'
-# Uncomment to use other languages like French or Chinese
-# language = 'French'
-# language = 'Chinese'
+# Initialize a FastAPI application instance.
+app = FastAPI()
 
-# Define the question to be answered by the model
-question = 'Who are you?'
-# Uncomment to use other questions
-# question = 'How to make scrambled eggs with tomatoes?'
-# question = 'How to use Python Django?'
+# Add routes to the FastAPI app.
+# This creates an endpoint (`/chain_demo`) to expose the processing chain as a web service.
+add_routes(
+    app,
+    chain,
+    path='/chain_demo'
+)
 
-# Use the chain to invoke the model with the specified inputs
-response = chain.invoke({
-    'language': language,
-    'question': question
-})
-
-# Print the results, including the language, question, and response content
-print(f'language: {language} \nquestion: {question} \n{response.content}')
+# The entry point of the application.
+# Use Uvicorn to run the FastAPI application on the specified host and port.
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app, host='0.0.0.0', port=8000)
