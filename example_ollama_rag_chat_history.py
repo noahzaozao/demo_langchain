@@ -87,10 +87,12 @@ result_chain = RunnableWithMessageHistory(
     output_messages_key='answer'
 )
 
+config = {'configurable': {'session_id': 'nw123'}}
+
 # Test the chain with a question and specific session ID
 resp1 = result_chain.invoke(
     {'input': 'What is Task Decomposition?',},  # User input
-    config={'configurable': {'session_id': 'nw123566'}}  # Session-specific config
+    config  # Session-specific config
 )
 
 print(resp1['answer'])  # Print the response to the first question
@@ -98,7 +100,7 @@ print(resp1['answer'])  # Print the response to the first question
 # Test the chain with a follow-up question in the same session
 resp2 = result_chain.invoke(
     {'input': 'What are common ways of doing it?',},  # User input
-    config={'configurable': {'session_id': 'nw123566'}}  # Same session ID
+    config  # Same session ID
 )
 
 print(resp2['answer'])  # Print the response to the follow-up question

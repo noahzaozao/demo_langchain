@@ -86,10 +86,12 @@ result_chain = RunnableWithMessageHistory(
     output_messages_key='answer'  # Key for storing the final response
 )
 
+config = {'configurable': {'session_id': 'nw123566'}}
+
 # Example query 1: Ask about task decomposition
 resp1 = result_chain.invoke(
     {'input': 'What is Task Decomposition?',},  # User input
-    config={'configurable': {'session_id': 'nw123566'}}  # Session-specific configuration
+    config  # Session-specific configuration
 )
 
 # Print the response for the first query
@@ -98,7 +100,7 @@ print(resp1['answer'])
 # Example query 2: Ask about common methods of task decomposition
 resp2 = result_chain.invoke(
     {'input': 'What are common ways of doing it?',},  # User input
-    config={'configurable': {'session_id': 'nw123566'}}  # Session-specific configuration
+    config  # Session-specific configuration
 )
 
 # Print the response for the second query
