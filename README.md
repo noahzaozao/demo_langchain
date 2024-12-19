@@ -87,4 +87,11 @@ RAG improves the model's ability to generate precise and contextually relevant a
 - **Example 7**: RAG with LangChain and **Ollama**.  
     - Learn to use **Ollama** and RAG together for improved results.  
 
-- **Example 8**: RAG and chat history with Lang
+- **Example 8**: RAG and chat history with LangChain and **Ollama**.  
+    - Combine RAG and chat history to create even more accurate and personalized responses.  
+
+- **Example 9**: HTTP service with LangChain and **Tongyi**.  
+    - Create a web interface for users to interact with the **Tongyi** model via **LangChain**.  
+
+- **Example 10**: HTTP service with LangChain and **Ollama**.  
+    - Build a similar web service, but using the **Ollama** framework instead.
