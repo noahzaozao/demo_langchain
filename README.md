@@ -1,95 +1,90 @@
-# demo_langchain
+# Demo: LangChain Integration  
 
-## Overview
+## Overview  
 
-This repository provides practical examples of using **LangChain** with the **Tongyi** language model. **LangChain** is a framework designed to simplify the development of applications powered by large language models (LLMs). It enables developers to easily connect language models to different data sources, interact with external systems, and build advanced applications.
+This repository provides simple examples showing how to use **LangChain** with the **Tongyi** online language model platform and the **Ollama** local language model framework.  
 
-The repository contains easy-to-follow examples demonstrating how to integrate **LangChain** with **Tongyi**, enabling developers to leverage LLM capabilities in their applications. The focus is on vector search, embeddings, and Retrieval-Augmented Generation (RAG).
+<img src="./images/9e7f034c-d3a9-4c5d-9e52-0452385880b4.webp" alt="Overview" width="400"/>
 
-## Key Features
-- **Practical Examples**: Simple and clear examples of using **LangChain** with **Tongyi**.
-- **Data Integration**: Demonstrates how to connect and work with data from various sources using **LangChain**.
-- **Customization**: Explains how to customize **LangChain** to meet specific use cases.
-- **RAG Support**: Shows how to integrate Retrieval-Augmented Generation (RAG) to enhance query responses with external data.
+**LangChain** is a platform that makes it easy for developers to build powerful applications with large language models (LLMs). It simplifies the process of connecting LLMs to data sources, interacting with external systems, and creating advanced AI solutions.  
 
-## Key Concepts
+**Tongyi** is an online language model platform similar to other well-known platforms such as **ChatGPT**, **Google Gemini**, and **Baidu Qianfan**. These platforms provide robust cloud-based AI capabilities, making it possible to process natural language queries, perform advanced computations, and handle various tasks efficiently without relying on local resources.  
 
-### Vector Search and Embeddings
-**Vector search** is a technique used to find relevant information by understanding the meaning of a query, rather than just matching keywords. **Embeddings** are numerical representations of text (e.g., words, sentences, or paragraphs) that capture the meaning of the text. These embeddings are then used for comparison to find similar content.
+The examples in this repository demonstrate how to integrate **LangChain** with **Tongyi** and **Ollama**, highlighting use cases like vector search, embeddings, and Retrieval-Augmented Generation (RAG).  
 
-In **LangChain**, vector search is used to search through large datasets, retrieving the most relevant information based on the meaning of the query. Embeddings are generated from text to convert it into vectors, which can then be compared to other vectors in the database.
+Dive in and explore these tools with hands-on examples!  
 
-### Retrieval-Augmented Generation (RAG)
-RAG is a method that combines information retrieval and text generation. It allows the system to search for relevant information from external sources and use that data to generate more accurate and contextually relevant responses. 
+## Key Features  
 
-The workflow for RAG involves:
-1. **User Query**: A question or search request from the user.
-2. **Retrieving Relevant Information**: The query is transformed into an embedding, which is used to search for similar content in an external data source.
-3. **Text Generation**: The retrieved data is fed into a language model like **Tongyi**, which generates a response using both the model’s knowledge and the retrieved information.
-4. **Return Response**: The model returns a response based on the search results and the query.
+- **Simple Examples**: Beginner-friendly examples using **LangChain** with **Tongyi** and **Ollama**.  
+- **Data Integration**: Clear guidance on how to connect **LangChain** to various data sources.  
+- **Customizable**: Instructions for adapting **LangChain** to fit your specific requirements.  
+- **RAG Implementation**: Demonstrates how to use Retrieval-Augmented Generation (RAG) to enhance responses.  
 
-RAG enhances the model’s performance by combining the power of retrieval and generation, making it capable of handling more complex queries and providing more accurate results.
+## Key Concepts  
 
-## Workflow Overview
+### Vector Search and Embeddings  
 
-1. **User Input**: The process begins when the user provides a query.
-2. **Embeddings Creation**: The query is transformed into an embedding (a vector) to capture the meaning of the text.
-3. **Vector Search**: The system performs a vector search to find the most relevant content based on the query’s meaning.
-4. **Retrieve and Process Results**: The system retrieves the relevant information and may use **Tongyi** or another LLM to process the data and generate a response.
-5. **Return Response**: The final response is generated and returned to the user.
+**Vector search** enables finding relevant information by focusing on the meaning of a query, rather than just matching keywords. **Embeddings** are numerical representations of text (e.g., words or sentences) that capture their meaning. These embeddings are compared to find similar content.  
 
-This process allows applications to understand the meaning behind the user's query, retrieve relevant information, and provide more contextually accurate answers.
+In **LangChain**, vector search identifies the most relevant information for a query by leveraging embeddings to match meanings within a database.  
 
-## Setup
+### Retrieval-Augmented Generation (RAG)  
 
-1. Clone the repository:
+RAG combines information retrieval with text generation, enabling the model to search for relevant data from external sources and use it to generate more accurate responses.  
+
+<img src="./images/72607212-8367-4355-a7ad-2d942924d0e4.webp" alt="How it works: RAG Process" width="400"/>
+
+How it works:  
+1. **User Query**: The user asks a question or makes a request.  
+2. **Retrieve Information**: The query is converted into an embedding, which is used to find similar content.  
+3. **Generate Response**: The retrieved data is fed into a language model like **Tongyi** or **Ollama** to generate a response.  
+4. **Deliver Answer**: The model combines the retrieved data with its knowledge to produce a more accurate response.  
+
+RAG improves the model's ability to generate precise and contextually relevant answers.  
+
+## Setup  
+
+1. Clone the repository:  
     ```bash
     git clone https://github.com/noahzaozao/demo_langchain.git
     cd demo_langchain
-    ```
+    ```  
 
-2. Install the required dependencies:
+2. Install the required dependencies:  
     ```bash
     pip install -r requirements.txt
-    ```
+    ```  
 
-3. Set up your **Tongyi** API key and any necessary configurations for external data sources.
+3. Set up your **Tongyi** and **Ollama** API keys, and configure any external data sources.  
 
-4. Run the examples:
+4. Run the examples:  
     ```bash
     python example_tongyi.py
-    ```
+    python example_ollama.py
+    ```  
 
-## Examples
+## Examples  
 
-- **Example 1**: Basic usage with LangChain and **Tongyi**.
-    - Demonstrates how to integrate **Tongyi** with **LangChain** for simple text generation and basic queries.
-    
-- **Example 2**: Chat history with LangChain and **Tongyi**.
-    - Shows how to maintain chat history and use it in conversations with **Tongyi** to simulate continuous dialogue.
+- **Example 1**: Basic usage with LangChain and **Tongyi**.  
+    - Learn how to use **Tongyi** with **LangChain** for simple text generation and queries.  
 
-- **Example 3**: RAG with LangChain and **Tongyi**.
-    - Demonstrates the **Retrieval-Augmented Generation (RAG)** approach by integrating **Tongyi** with external data sources for more accurate and contextually relevant responses.
+- **Example 2**: Chat history with LangChain and **Tongyi**.  
+    - See how to maintain chat history for more personalized conversations.  
 
-- **Example 4**: RAG and Chat history with LangChain and **Tongyi**.
-    - Combines **RAG** with chat history for generating responses based on past interactions while retrieving external information to improve accuracy.
+- **Example 3**: RAG with LangChain and **Tongyi**.  
+    - Learn how to retrieve relevant data to improve the quality of responses.  
 
-- **Example 5**: Basic usage with LangChain and **Ollama**.
-    - Shows how to integrate **Ollama** with **LangChain** for basic text generation tasks.
+- **Example 4**: RAG and chat history with LangChain and **Tongyi**.  
+    - Combine RAG with chat history to produce highly accurate and contextual answers.  
 
-- **Example 6**: Chat history with LangChain and **Ollama**.
-    - Demonstrates using **Ollama** with **LangChain** while maintaining chat history for simulating ongoing conversations.
+- **Example 5**: Basic usage with LangChain and **Ollama**.  
+    - Understand how to use **Ollama** with **LangChain** for simple tasks.  
 
-- **Example 7**: RAG with LangChain and **Ollama**.
-    - Implements **RAG** with **Ollama**, showing how to augment the model's responses by retrieving relevant data from external sources.
+- **Example 6**: Chat history with LangChain and **Ollama**.  
+    - Maintain conversation history while using the **Ollama** framework.  
 
-- **Example 8**: RAG and Chat history with LangChain and **Ollama**.
-    - Combines **RAG** and chat history with **Ollama** to generate responses that take both past interactions and external data into account.
+- **Example 7**: RAG with LangChain and **Ollama**.  
+    - Learn to use **Ollama** and RAG together for improved results.  
 
-- **Example 9**: HTTP service with LangChain and **Tongyi**.
-    - Implements an HTTP service using **LangChain** and **Tongyi**, allowing users to interact with the model through a web interface.
-
-- **Example 10**: HTTP service with LangChain and **Ollama**.
-    - Similar to Example 9, but using **Ollama** for generating responses in a web service environment powered by **LangChain**.
-
-
+- **Example 8**: RAG and chat history with Lang
