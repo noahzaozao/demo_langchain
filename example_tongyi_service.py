@@ -3,6 +3,7 @@ import config
 from langchain.prompts import PromptTemplate
 from langchain_community.llms import Tongyi
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from langserve import add_routes
 
 # Initialize the Tongyi language model with specified parameters.
@@ -35,6 +36,22 @@ chain = prompt_template | model
 
 # Initialize a FastAPI application instance.
 app = FastAPI()
+
+# Add CORS middleware to handle cross-origin requests.
+origins = [
+    "http://localhost",  # Allow from localhost (no specific port)
+    "http://localhost:3000",  # Allow from localhost on port 3000 (common for React apps)
+    "http://127.0.0.1:5500",  # Example for VS Code Live Server extension
+    "http://localhost:8080",  # Example for python serve http server
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # List of allowed origins
+    allow_credentials=True,  # If you need to support cookies across domains
+    allow_methods=["*"],  # Allows all methods (GET, POST, PUT, DELETE, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
 
 # Add routes to the FastAPI app.
 # This creates an endpoint (`/chain_demo`) to expose the processing chain as a web service.
