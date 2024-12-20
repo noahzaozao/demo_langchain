@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo Client - Stream LangChain Service</title>
+</head>
+<body>
+
+<h1>Demo Client - Stream LangChain Service</h1>
+
+<!-- 使用一个文本框来显示流式数据 -->
+<textarea id="result" rows="20" cols="80" readonly style="resize: none;"></textarea>
+
+<script>
+// URL of the remote service you want to connect to
+const url = "http://127.0.0.1:8000/chain_demo/stream";
+
+async function getChainDemoStream() {
+    try {
+        // Define the data payload as a JavaScript object
+        const data = {
+            input: {
+                language: "English", // Specify the language of the input
+                question: "How heavy is a lion?" // The question you want to ask the service
+            }
+        };
+
+        // Send a POST request with the data payload to the specified URL
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        // Check if the response supports streaming
+        if (!response.body) {
+            throw new Error("ReadableStream not supported!");
+        }
+
+        // Get the result textarea element
+        const resultElement = document.getElementById('result');
+        resultElement.value = ""; // Clear previous content
+
+        // Use a reader to consume the response stream
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let done = false;
+
+        while (!done) {
+            const { value, done: readerDone } = await reader.read();
+            done = readerDone;
+
+            // Decode the chunk
+            if (value) {
+                let chunk = decoder.decode(value, { stream: true });
+                
+                // Parse data lines and filter "data" field
+                chunk.split("\n").forEach(line => {
+                    if (line.startsWith("data:")) {
+                        // For Ollama
+                        // const dataPart = JSON.parse(line.replace('data: ', '')).content ? JSON.parse(line.replace('data: ', '')).content : '';
+                        // For Tongyi
+                        const dataPart = line.replace(/^data:\s*/, "").replace(/"/g, "").trim() + ' ';
+                        resultElement.value += dataPart; // Append to textarea
+                        resultElement.scrollTop = resultElement.scrollHeight; // Auto-scroll to the bottom
+                    }
+                });
+            }
+        }
+    } catch (error) {
+        // Handle any errors that occur during the request
+        console.error('Error:', error);
+        document.getElementById('result').value = 'An error occurred while fetching the data.';
+    }
+}
+
+// Call the function to get the chain demo result when the page loads
+window.onload = getChainDemoStream;
+</script>
+
+</body>
+</html>
